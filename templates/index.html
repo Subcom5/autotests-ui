@@ -4,18 +4,58 @@
     <meta charset="UTF-8">
     <title>Заголовок 1</title>
     <style>
-        .H2_text{
+        #H1_text {
+            font-size: 15px;
+            color: green
+        }
+
+        .H2_text {
             color: red
         }
+
+        .H6_text {
+            font-size: 55px
+        }
+
+        div.python > a {
+            color: grey
+        }
+
+        ul li {
+           color: green
+        }
+
+        input[type="text"] {
+            background-color: blue
+        }
+
+        input[type="text"]:hover {
+            background-color: green
+        }
+
+        a:hover {
+            color: red
+        }
+
+        li::marker {
+            color: red
+        }
+
+        ul > li:nth-child(2) {
+            color: blue
+        }
+
     </style>
 </head>
 <body>
-<div>
+<div class="python">
     <h1 id="H1_text">H1 text</h1>
+    <h1>H1 text 2</h1>
+    <h1>H11 text 2</h1>
     <h2 class="H2_text">H2 text</h2>
-    <h6 class="H2_text">H6 text</h6>
+    <h6 class="H2_text H6_text">H6 text</h6>
     <p>Будьте вежливы и соблюдайте наши <span style="color: green">принципы</span> сообщества.</p>
-    <a href="https://stepik.org/lesson/1452311/step/1?unit=1471322" target="_blank">learning</a>
+    <a href="https://stepik.org/lesson/1452311/step/1?unit=1471322" target="_blank">Python</a>
     <img alt="browser.png" src="https://stepik.org/static/frontend/topbar_logo.svg" style="width: 250px">
     <ul>
         <li>item 1</li>
@@ -56,6 +96,22 @@
         </tr>
         </tbody>
     </table>
+    <div class="nth">
+        <p>1</p>
+        <p>2</p>
+        <h6>3</h6>
+        <h5>4</h5>
+        <p>5</p>
+    </div>
+</div>
+<div class="java">
+    <h2 class="H2_text">H2 text</h2>
+    <a href="https://stepik.org/lesson/1452311/step/1?unit=1471322" target="_blank">Java</a>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
 
 </div>
 </body>
