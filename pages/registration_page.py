@@ -3,6 +3,9 @@ from playwright.sync_api import Page, expect
 
 
 class RegistrationPage(BasePage):
+    """
+    Page Object для страницы регистрации
+    """
     def __init__(self, page: Page):
         super().__init__(page)
 
@@ -13,6 +16,13 @@ class RegistrationPage(BasePage):
         self.login_link = page.get_by_test_id('registration-page-login-link')
 
     def fill_registration_form(self, email: str, username: str, password:str):
+        """
+        Метод для заполнения формы регистрации
+
+        :param email: почта
+        :param username: имя
+        :param password: пароль
+        """
         self.email_input.fill(email)
         expect(self.email_input).to_have_value(email)
 
@@ -23,10 +33,16 @@ class RegistrationPage(BasePage):
         expect(self.password_input).to_have_value(password)
 
     def click_registration_button(self):
+        """
+        Метод для нажатия кнопки регистрации нового пользователя
+        """
         expect(self.registration_button).to_be_visible()
         self.registration_button.click()
 
 
     def click_login_link(self):
+        """
+        Метод для нажатия ссылки перехода на страницу логина
+        """
         expect(self.login_link).to_be_visible()
         self.login_link.click()
