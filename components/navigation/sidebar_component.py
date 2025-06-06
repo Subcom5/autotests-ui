@@ -13,35 +13,35 @@ class SidebarComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.logout_list_item = SidebarListItemComponent(page, 'logout')
-        self.courses_list_item = SidebarListItemComponent(page, 'courses')
-        self.dashboard_list_item = SidebarListItemComponent(page, 'dashboard')
+        self.logout_list_item = SidebarListItemComponent(page)
+        self.courses_list_item = SidebarListItemComponent(page)
+        self.dashboard_list_item = SidebarListItemComponent(page)
 
     def check_visible(self):
         """
         Метод проверяет корректное отображение компонента боковая панель
         """
-        self.logout_list_item.check_visible('Logout')
-        self.courses_list_item.check_visible('Courses')
-        self.dashboard_list_item.check_visible('Dashboard')
+        self.logout_list_item.check_visible('Logout', 'logout')
+        self.courses_list_item.check_visible('Courses', 'courses')
+        self.dashboard_list_item.check_visible('Dashboard', 'dashboard')
 
-    def click_logout(self):
+    def click_logout(self, identifier: str):
         """
         Метод имитирует нажатие на элемент выхода из приложения и проверяет,
         что произошел редирект на указанный URL
         """
-        self.logout_list_item.navigate(re.compile(r".*/#/auth/login"))
+        self.logout_list_item.navigate(re.compile(r".*/#/auth/login"), identifier=identifier)
 
-    def click_courses(self):
+    def click_courses(self, identifier: str):
         """
         Метод имитирует нажатие на элемент перехода к курсам,
         что произошел редирект на указанный URL
         """
-        self.courses_list_item.navigate(re.compile(r".*/#/courses"))
+        self.courses_list_item.navigate(re.compile(r".*/#/courses"), identifier=identifier)
 
-    def click_dashboard(self):
+    def click_dashboard(self, identifier: str):
         """
         Метод имитирует нажатие на элемент перехода на панель управления,
         что произошел редирект на указанный URL
         """
-        self.dashboard_list_item.navigate(re.compile(r".*/#/dashboard"))
+        self.dashboard_list_item.navigate(re.compile(r".*/#/dashboard"), identifier=identifier)
