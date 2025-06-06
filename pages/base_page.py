@@ -1,4 +1,6 @@
-from playwright.sync_api import Page
+from re import Pattern
+
+from playwright.sync_api import Page, expect
 
 
 class BasePage:
@@ -21,3 +23,10 @@ class BasePage:
         Метод перезагружает текущую страницу и ожидает завершения загрузки сети.
         """
         self.page.reload(wait_until='networkidle')
+
+    def check_current_url(self, expected_url: Pattern[str]):
+        """
+        Метод для проверки текущего URL
+        :param expected_url: Ожидаемый url
+        """
+        expect(self.page).to_have_url(expected_url)
