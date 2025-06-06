@@ -1,6 +1,8 @@
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
+from elements.button import Button
+from elements.text import Text
 
 
 class CreateCourseToolbarViewComponent(BaseComponent):
@@ -10,8 +12,10 @@ class CreateCourseToolbarViewComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.title = page.get_by_test_id('create-course-toolbar-title-text')
-        self.create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
+        self.title = Text(page, 'create-course-toolbar-title-text', 'Title')
+        self.create_course_button = Button(
+            page, 'create-course-toolbar-create-course-button', 'Create course'
+        )
 
     def check_visible(self, is_create_course_disabled: bool = True):
         """
@@ -20,18 +24,18 @@ class CreateCourseToolbarViewComponent(BaseComponent):
 
         :param is_create_course_disabled: флаг видимости кнопки создания курса
         """
-        expect(self.title).to_be_visible()
-        expect(self.title).to_have_text('Create course')
+        self.title.check_visible()
+        self.title.check_have_text('Create course')
 
         if is_create_course_disabled:
-            expect(self.create_course_button).to_be_disabled()
+            self.create_course_button.check_disabled()
 
         if not is_create_course_disabled:
-            expect(self.create_course_button).to_be_enabled()
+            self.create_course_button.check_enabled()
 
     def click_create_course_button(self):
         """
         Метод имитирует нажатие кнопки создания курса, если она активна
         """
-        expect(self.create_course_button).to_be_enabled()
+        self.create_course_button.check_enabled()
         self.create_course_button.click()
