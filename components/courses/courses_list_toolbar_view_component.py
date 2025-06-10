@@ -1,4 +1,6 @@
 import re
+import allure
+
 from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
@@ -21,7 +23,7 @@ class CoursesListToolbarViewComponent(BaseComponent):
         self.create_course_button = Button(
             page, 'courses-list-toolbar-create-course-button', 'Create course'
         )
-
+    @allure.step('Checking the visibility of the courses list toolbar')
     def check_visible(self):
         """
         Метод проверяет отображение элементов и корректное название заголовка "Courses "
@@ -31,6 +33,7 @@ class CoursesListToolbarViewComponent(BaseComponent):
 
         self.create_course_button.check_visible()
 
+    @allure.step('Click the create course button')
     def click_create_course_button(self):
         """
         Метод имитирует нажатие на кнопку создания курса и проверяет, что выполнился редирект на нужный url

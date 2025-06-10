@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
@@ -13,6 +14,7 @@ class DashboardToolbarViewComponent(BaseComponent):
 
         self.title = Text(page, 'dashboard-toolbar-title-text', 'Title')
 
+    @allure.step("Check visible title dashboard toolbar")
     def check_visible(self):
         """
         Метод проверяет отображение и корректное название заголовка "Dashboard"

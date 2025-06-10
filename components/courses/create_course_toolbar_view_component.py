@@ -1,3 +1,4 @@
+import allure
 from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
@@ -17,6 +18,8 @@ class CreateCourseToolbarViewComponent(BaseComponent):
             page, 'create-course-toolbar-create-course-button', 'Create course'
         )
 
+    @allure.step("Check visibility and state of form elements before course creation \
+    (create button disabled: {is_create_course_disabled})")
     def check_visible(self, is_create_course_disabled: bool = True):
         """
         Метод проверяет корректное отображение элементов в зависимости от полноты заполнения формы курса и
@@ -33,6 +36,7 @@ class CreateCourseToolbarViewComponent(BaseComponent):
         if not is_create_course_disabled:
             self.create_course_button.check_enabled()
 
+    @allure.step("Click the  create course button if enabled")
     def click_create_course_button(self):
         """
         Метод имитирует нажатие кнопки создания курса, если она активна
