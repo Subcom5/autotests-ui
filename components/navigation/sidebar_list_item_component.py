@@ -1,4 +1,6 @@
 from typing import Pattern
+
+import allure
 from playwright.sync_api import Page
 
 from components.base_component import BaseComponent
@@ -18,6 +20,7 @@ class SidebarListItemComponent(BaseComponent):
         self.title = Text(page, '{identifier}-drawer-list-item-title-text', 'Title')
         self.button = Button(page, '{identifier}-drawer-list-item-button', 'Button')
 
+    @allure.step('Check visible "{title}" sidebar list item')
     def check_visible(self, title: str, identifier: str):
         """
         Метод проверяет видимость и содержание компонента боковой панели

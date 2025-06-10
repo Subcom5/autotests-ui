@@ -5,4 +5,6 @@ class Image(BaseElement):
     """
     Класс реализует компонент - image
     """
-    pass
+    @property
+    def type_of(self) -> str:
+        return "image"

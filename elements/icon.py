@@ -5,4 +5,6 @@ class Icon(BaseElement):
     """
     Класс реализует компонент - icon
     """
-    pass
+    @property
+    def type_of(self) -> str:
+        return "icon"
