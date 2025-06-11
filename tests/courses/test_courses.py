@@ -8,6 +8,8 @@ from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 from tools.allure.tags import AllureTag
+from tools.routes import AppRoute
+from config import settings
 
 
 @pytest.mark.regression
@@ -23,9 +25,9 @@ class TestCourses:
     @allure.title("Check displaying of empty courses list")
     @allure.severity(Severity.NORMAL)
     def test_empty_courses_list(self, courses_list_page: CoursesListPage):
-        courses_list_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses')
+        courses_list_page.visit(AppRoute.COURSES)
 
-        courses_list_page.navbar.check_visible('username')
+        courses_list_page.navbar.check_visible(settings.test_user.username)
         courses_list_page.sidebar.check_visible()
         courses_list_page.toolbar_view.check_visible()
         courses_list_page.check_visible_empty_view()
@@ -37,7 +39,7 @@ class TestCourses:
             courses_list_page: CoursesListPage,
             create_course_page: CreateCoursePage
     ):
-        create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
+        create_course_page.visit(AppRoute.CREATE_COURSE)
 
         create_course_page.course_toolbar_view.check_visible(is_create_course_disabled=True)
         create_course_page.image_upload_widget.check_visible('create-course-preview', is_image_uploaded=False)
@@ -50,7 +52,10 @@ class TestCourses:
         )
         create_course_page.exercise_toolbar_view.check_visible()
         create_course_page.check_visible_exercises_empty_view()
-        create_course_page.image_upload_widget.upload_preview_image('./testdata/files/image.png', 'create-course-preview')
+        create_course_page.image_upload_widget.upload_preview_image(
+            settings.test_data.image_png_file,
+            'create-course-preview'
+        )
         create_course_page.image_upload_widget.check_visible('create-course-preview', is_image_uploaded=True)
         create_course_page.create_course_form.fill(
             title="Playwright",
@@ -77,10 +82,11 @@ class TestCourses:
             create_course_page: CreateCoursePage,
             courses_list_page: CoursesListPage
     ):
-        create_course_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/courses/create')
+        create_course_page.visit(AppRoute.CREATE_COURSE)
 
         create_course_page.image_upload_widget.upload_preview_image(
-            './testdata/files/image.png', 'create-course-preview'
+            settings.test_data.image_png_file,
+            'create-course-preview'
         )
         create_course_page.create_course_form.fill(
             title="Playwright",
