@@ -2,10 +2,12 @@
   <dictionary name="project">
     <words>
       <w>автотесты</w>
+      <w>видеофиксации</w>
       <w>дашбордом</w>
       <w>неактивности</w>
       <w>отображется</w>
       <w>предпросмотра</w>
+      <w>трейсинга</w>
     </words>
   </dictionary>
 </component>
